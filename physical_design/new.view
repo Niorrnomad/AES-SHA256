@@ -1,0 +1,10 @@
+# Version:1.0 MMMC View Definition File
+# Do Not Remove Above Line
+create_rc_corner -name all -preRoute_res {1.0} -preRoute_cap {1.0} -preRoute_clkres {0.0} -preRoute_clkcap {0.0} -postRoute_res {1.0} -postRoute_cap {1.0} -postRoute_xcap {1.0} -postRoute_clkres {0.0} -postRoute_clkcap {0.0} -qx_tech_file {../Downloads/gsclib045_all_v4.8/gsclib045/qrc/qx/gpdk045.tch}
+create_op_cond -name all -library_file {../Downloads/gsclib045_all_v4.8/gsclib045/techfile/gsclib045_tech.tf} -P {10.0} -V {10.0} -T {10.0}
+create_library_set -name max -timing {../Downloads/gsclib045_all_v4.8/gsclib045/timing/slow_vdd1v0_basicCells.lib} -si {../Downloads/gsclib045_all_v4.8/gsclib045/celtic/slow.cdb}
+create_library_set -name min -timing {../Downloads/gsclib045_all_v4.8/gsclib045/timing/fast_vdd1v0_basicCells.lib} -si {../Downloads/gsclib045_all_v4.8/gsclib045/celtic/fast.cdb}
+create_constraint_mode -name all -sdc_files {../pj/project_7/physical_design/aes256/results/aes256_synth.sdc}
+create_delay_corner -name all -rc_corner {all} -early_library_set {max} -late_library_set {min}
+create_analysis_view -name all -constraint_mode {all} -delay_corner {all}
+set_analysis_view -setup {all} -hold {all}

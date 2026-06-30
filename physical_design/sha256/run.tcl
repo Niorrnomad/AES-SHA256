@@ -1,27 +1,18 @@
-# ============================================================
-#  run.tcl 
-# ============================================================
-
-set_db super_thread_servers {}
-set_db auto_super_thread false
-set_db max_cpus_per_server 0
-set_db information_level 0
+set_db max_cpus_per_server 4
+set_multi_cpu_usage -local_cpu 4
 # === Design setup ===
-set DESIGN  sha256
-set RTL_DIR "/home/niorr/pj/project_7/project_7.srcs/sources_1"
-set LIB_DIR "/home/niorr/adder_rtl/lib/gsclib045_all_v4.8"
-set OUT_DIR "/home/niorr/pj/project_7/physical_design/sha256/results"
-set SDC_FILE "/home/niorr/pj/project_7/physical_design/sha256/new.sdc"
+set DESIGN  aes256
+set LIB_DIR "/home/niorr/Downloads/gsclib045_all_v4.8"
+set OUT_DIR "/home/niorr/pj/project_7/physical_design/aes256/results"
+set SDC_FILE "/home/niorr/pj/project_7/physical_design/aes256/new.sdc"
 
 # === Environment setup ===
 file mkdir $OUT_DIR
-set_db init_hdl_search_path [list $RTL_DIR]
-
 
 read_libs $LIB_DIR/gsclib045/timing/slow_vdd1v0_basicCells.lib
 set_db library [list $LIB_DIR/gsclib045/timing/slow_vdd1v0_basicCells.lib]
 
-read_hdl  /home/niorr/pj/project_7/project_7.srcs/sources_1/sha256_2.0.v
+read_hdl  /home/niorr/Downloads/aes.v
 
 elaborate $DESIGN
 
